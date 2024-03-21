@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Día Internacional de la Felicidad</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        overflow: hidden; /* Evitar scrollbars por la animación */
+        background-image: url("https://i.pinimg.com/originals/09/5a/cd/095acd0f7caee6ead6af69cebbe98873.jpg");
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+    .content {
+        background-color: rgba(255, 252, 91, 0.806); /* Fondo semitransparente */
+        padding: 20px;
+        border-radius: 10px; 
+        cursor: pointer; /* Cambiar el cursor al pasar sobre el div */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra */
+        transition: transform 0.2s ease; /* Efecto de transición al hacer clic */
+        margin-top: -250px;
+    }
+    .content:hover {
+        transform: scale(1.05); /* Aumentar tamaño al pasar el cursor */
+    }
+
+    .flower {
+        width: 50px;
+        height: 50px;
+        position: absolute;
+        background-image: url(2.png);
+        background-size: contain;
+        animation: fall 5s linear infinite;
+    }
+
+    @keyframes fall {
+        0% { transform: translateY(-100vh) rotate(0deg); }
+        100% { transform: translateY(100vh) rotate(360deg); }
+    }
+    .message {
+        margin-top: 0px; /* Ajustar posición vertical */
+    }
+</style>
+</head>
+<body>
+    <div class="content" onclick="showRandomPhrase()">
+        <div class="message">
+            <h4>¡Que tu día esté lleno de sonrisas!</h4>
+        </div>
+    </div>
+<script>
+    window.onload = function() {
+        // Frases bonitas
+        var phrases = [
+            "¡Que tu día esté lleno de sonrisas!",
+            "La felicidad está en las pequeñas cosas.",
+            "Regala amor y recibirás felicidad.",
+            "Hoy es un buen día para ser feliz.",
+            "Llegó la primavera y tu sonrisa alumbra más que un sol radiante",
+        ];
+
+        // Obtener elemento div de mensaje
+        var messageDiv = document.querySelector('.message');
+
+        // Función para mostrar una frase aleatoria
+        function showRandomPhrase() {
+            var randomIndex = Math.floor(Math.random() * phrases.length);
+            messageDiv.innerHTML = '<h4>' + phrases[randomIndex] + '</h4>'; // Modificado para colocar el texto dentro de un h4
+        }
+
+        // Mostrar una frase aleatoria cuando se carga la página
+        showRandomPhrase();
+
+        // Crear y añadir flores al body
+        var numFlowers = 14;
+        for (var i = 0; i < numFlowers; i++) {
+            var flower = document.createElement('div');
+            flower.className = 'flower';
+            flower.style.left = Math.random() * window.innerWidth + 'px';
+            flower.style.animationDelay = Math.random() * 5 + 's';
+            document.body.appendChild(flower);
+        }
+
+        // Cambiar la frase al hacer clic en el mensaje
+        messageDiv.addEventListener('click', showRandomPhrase);
+    };
+</script>
+</body>
+</html>
